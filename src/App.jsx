@@ -1,6 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+import seedrandom from 'seedrandom';
 import './App.css';
+
+let rng = seedrandom(window.location.hash);
+let hash = window.location.hash;
+
 const isNull = a => a === null;
 
 const players = [
@@ -17,7 +21,7 @@ const players = [
 ];
 
 const randomOne = arr => (
-	arr[Math.floor(Math.random()*arr.length)]
+	arr[Math.floor(rng()*arr.length)]
 );
 
 const removeOne = (arr, target) => {
@@ -113,21 +117,32 @@ const genSchedule = () => {
 };
 
 const makeSched = () => {
+	rng = seedrandom(window.location.hash);
 	let attempt = 0;
 	let finalSched = false;
 	while (!finalSched && attempt < 10000) {
 		finalSched = genSchedule();
-		console.log({ attempt });
 		attempt++;
 	}
 	return finalSched;
 };
 
+const makeNewSched = () => {
+	hash = `${Math.random()}`;
+	window.location.hash = hash;
+	return makeSched();
+};
+
 function App() {
 	const [sched, setSched] = React.useState(false);
+	React.useEffect(() => {
+		const hash = window.location.hash;
+		if (hash && hash !== '') {
+			setSched(makeSched());
+		}
+	}, []);
 
 	const renderSchedule = (sched) => {
-		console.log({ sched });
 		const rows = players.map(({id, d, name}) => (
 			<tr>
 				<td style={{
@@ -179,7 +194,7 @@ function App() {
 
   return (
 		<div className="App" style={{ margin: '30px' }} >
-			<button onClick={() => setSched(makeSched())} >Generate Schedule</button>
+			<button onClick={() => setSched(makeNewSched())} >Generate New Schedule</button>
 			{sched && renderSchedule(sched)}
     </div>
   );
