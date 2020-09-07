@@ -9,15 +9,15 @@ const isNull = a => a === null;
 
 const players = [
 	{ id: 0, name: 'alex ', d: 1 },
-	{ id: 1, name: 'jack ', d: 1 },
-	{ id: 2, name: 'brian', d: 1 },
-	{ id: 3, name: 'nick ', d: 1 },
-	{ id: 4, name: 'jeff ', d: 1 },
-	{ id: 5, name: 'noah ', d: 2 },
-	{ id: 6, name: 'reid ', d: 2 },
-	{ id: 7, name: 'blake', d: 2 },
-	{ id: 8, name: 'zach ', d: 2 },
-	{ id: 9, name: 'ben  ', d: 2 },
+	{ id: 1, name: 'noah ', d: 1 },
+	{ id: 2, name: 'blake', d: 1 },
+	{ id: 3, name: 'ben ', d: 1 },
+	{ id: 4, name: 'brian ', d: 1 },
+	{ id: 5, name: 'jeff ', d: 2 },
+	{ id: 6, name: 'geo ', d: 2 },
+	{ id: 7, name: 'jack', d: 2 },
+	{ id: 8, name: 'reid ', d: 2 },
+	{ id: 9, name: 'zach  ', d: 2 },
 ];
 
 const randomOne = arr => (
